@@ -52,7 +52,7 @@ $(document).ready(function(){
 		//create a new random question (generated like before, same code - but now stored in different variable to differentiate)
 		newRandomQuestion = app.questions[Math.floor(Math.random()* app.questions.length)];
 		
-		//as seen as before, can add the new random question to the form element (newRandomQuestion.question - accessing property for the given value)
+		//as seen as before, we can add the newly generated random question to the form element (newRandomQuestion.question - accessing property for the given value)
 		$currentForm.prepend('<h3 class = "question"> Question: ' + newRandomQuestion.question + '</h3>' + '<br><br>');
 
 		//call answerGenerator with the new generated random question
@@ -64,10 +64,14 @@ $(document).ready(function(){
 	// checks the answer when the user clicks "Am I right?"
 	$('#checkAnswer').on('click',function(){
 		event.preventDefault();
-		// represents whichever check box the user clicks on
-		$userInput = $('input:checked');
+		//$userInput = $('input:checked');
 
-		if(app.randomQuestion.choices[$userInput.val()] === app.randomQuestion.correct ){
+		// represents whichever check box the user clicks on
+		//need the actual value of what the user selected so add .val()
+		$userInput = $('input:checked').val();
+
+		//if the user's selected answer matches the correct answer for the generated random questions then
+		if( ($userInput === firstRandomQuestion.correct) || ($userInput === newRandomQuestion.correct) ){
 
 			//shows user pop-up: "You are correct!"
 			app.successDisplay();

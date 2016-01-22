@@ -49,7 +49,17 @@ $(document).ready(function(){
 	//adds a random question and its corresponding answers to our currentForm
 	var QandAgenerator = function(){
 
+		//create a new random question (generated like before, same code - but now stored in different variable to differentiate)
+		newRandomQuestion = app.questions[Math.floor(Math.random()* app.questions.length)];
+		
+		//as seen as before, can add the new random question to the form element (newRandomQuestion.question - accessing property for the given value)
+		$currentForm.prepend('<h3 class = "question"> Question: ' + newRandomQuestion.question + '</h3>' + '<br><br>');
+
+		//call answerGenerator with the new generated random question
+		answerGenerator(newRandomQuestion);
 	};
+
+
 
 	// checks the answer when the user clicks "Am I right?"
 	$('#checkAnswer').on('click',function(){
@@ -58,11 +68,18 @@ $(document).ready(function(){
 		$userInput = $('input:checked');
 
 		if(app.randomQuestion.choices[$userInput.val()] === app.randomQuestion.correct ){
+
+			//shows user pop-up: "You are correct!"
 			app.successDisplay();
+			//increase the count variable
 			app.countIncrementor();
+			//update the page with the new count
 			$currentCount.empty().append(app.count);
+			//generate a new question with its corresponding answer choices
 			$('.choices').empty().append(QandAgenerator());
+		//if the user fails to answer correctly
 		} else {
+			//show fail image and display restart button for user to start over
 			app.failureDisplay();
 		}		
 	});

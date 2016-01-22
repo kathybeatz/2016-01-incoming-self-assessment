@@ -9,6 +9,7 @@ $(document).ready(function(){
 	var firstRandomQuestion = app.questions[Math.floor(Math.random()* app.questions.length)];
 	
 	//attaches the counter to the highscore on page
+	$currentCount.text(app.count); 
 
 	//attaches the first question to the form onload
 	$currentForm.prepend('<h3 class = "question"> Question: ' + firstRandomQuestion.question + '</h3>' + '<br><br>');

@@ -1,5 +1,7 @@
 window.app = {};
 	// questions that will be generated for the user.
+
+	//questions are bundled in an object, use dot method to reference each's property's value	
 app.questions = [{
 		'question': 'Math.round(-20.51) = ?',
 		'choices': ['20','-21','19','none of the above'],
@@ -147,6 +149,7 @@ app.questions = [{
 	}
 ];
 
+//count variable, reference this in app.js
 app.count = 0;
 
 app.countIncrementor = function(){
@@ -154,14 +157,13 @@ app.countIncrementor = function(){
 	console.log("I've been counting!")
 };
 
-
+//displayed when user gets answer correct
 app.successDisplay = function(){
 	alert("You are correct!");
 };
 
+//displayed when user gets answer wrong
 app.failureDisplay = function(){
-	// $('body').empty().append('<div class="wrong"><img src = "photos/redcheckmark.png"></div>');
-	// $('.wrong').append('<div>Use the link below to get better!</div>');
 	$('#checkAnswer').hide();
 	$('.jsPic').hide();
 	$('form').empty().append('<div class="wrong"><img src = "photos/redcheckmark.png"></div><br><br>').append('<button class="btn-lg" id="restart"> Start Over');
